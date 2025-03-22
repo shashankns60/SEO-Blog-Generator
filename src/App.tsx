@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, Loader2 } from 'lucide-react';
+import { FileText, Loader2, Clipboard, Check } from 'lucide-react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 
@@ -15,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [article, setArticle] = useState('');
   const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const generatePrompt = (keyword: string) => {
     return `Write a comprehensive, engaging blog article about "${keyword}". The article should:
@@ -52,13 +53,14 @@ Make the content engaging, informative, and easy to read while maintaining SEO b
 
     setLoading(true);
     setError('');
+    setCopied(false); // Reset copy state when generating a new article
 
     try {
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer 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',
+          'Authorization': 'Bearer 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',
           'HTTP-Referer': window.location.href,
           'X-Title': 'SEO Blog Generator'
         },
@@ -87,6 +89,15 @@ Make the content engaging, informative, and easy to read while maintaining SEO b
     } finally {
       setLoading(false);
     }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(article)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+      })
+      .catch(err => console.error("Failed to copy text: ", err));
   };
 
   return (
@@ -136,7 +147,17 @@ Make the content engaging, informative, and easy to read while maintaining SEO b
 
           {article && (
             <div className="mt-8">
-              <h2 className="text-xl font-semibold mb-4">Generated Article:</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Generated Article:</h2>
+                <button
+                  onClick={copyToClipboard}
+                  className="flex items-center gap-2 px-3 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                >
+                  {copied ? <Check className="w-4 h-4 text-green-600" /> : <Clipboard className="w-4 h-4" />}
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
+
               <div 
                 className="prose prose-blue max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-img:rounded-lg prose-hr:my-8 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-1 prose-blockquote:px-4 prose-p:text-gray-700 prose-li:text-gray-700"
                 dangerouslySetInnerHTML={{
