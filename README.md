@@ -123,6 +123,7 @@ If you like this project, **give it a star ⭐ on GitHub** and share your feedba
 ## ☕ Support My Work  
 If you find my work useful, consider buying me a coffee!  
 
-[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=webleex&button_colour=FFDD00&font_colour=000000&font_family=Arial&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/webleex)
+[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy+me+a+coffee&emoji=☕&slug=webleex&button_colour=FFDD00&font_colour=000000&font_family=Arial&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/webleex)
+
 
 
