@@ -118,7 +118,7 @@ This project is licensed under the **MIT License**. Feel free to use and modify 
 ---
 
 ## ⭐ Contribute & Support
-If you like this project, **give it a star ⭐ on GitHub** and share your feedback! 💬 PRs are welcome!
+If you like this project, **give it a star ⭐ on GitHub** and share your feedback! 💬 PRs are welcome!  
 
 ## ☕ Support My Work  
 If you find my work useful, consider buying me a coffee!  
